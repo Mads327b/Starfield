@@ -25,10 +25,14 @@ public class Star {
     }
     public void update(double time, double speed, double max){
         z -= speed*time;
-        if(z <= 0){
+        double per = (300.0/(300.0+max));
+        if(z <= 5){
+            x = Math.random()*(800.00/per)-400/per;
+            y = Math.random()*(600.00/per)-300/per;
             z = max;
-        }else if(z >= max)
-            z = 1;
+        }else if(z >= max){
+            z = 5;
+        }
     }
     public boolean show(Graphics2D g, Fun fun){
         GeneralPath path = new GeneralPath();
@@ -38,7 +42,7 @@ public class Star {
         double X = x*per,
                Y = y*per;
         if(X <= fun.getWidth()/2 && X >= -fun.getWidth()/2 && Y <= fun.getHeight()/2 && Y >= -fun.getHeight()/2 && size >= fun.minSize){
-            for (double i = 0; i < 2*Math.PI; i+=Math.PI/3) {
+            for (double i = 0; i < 2*Math.PI; i+=Math.PI/(fun.shape/2)) {
                 double x = Math.sin(i)*size+X;
                 double y = Math.cos(i)*size+Y;
                 if(i == 0)

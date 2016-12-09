@@ -5,6 +5,7 @@
  */
 package fun;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
@@ -21,11 +22,20 @@ public class mL2 implements MouseWheelListener {
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         if(e.getPreciseWheelRotation() == 1){
-            fun.minSize -= 0.01;
-            if(fun.minSize < 0)
-                fun.minSize = 0;
-        }else{
-            fun.minSize += 0.01;
+            if(fun.keyList.contains(String.valueOf(KeyEvent.VK_CONTROL))){
+                fun.shape -= 1;
+                if(fun.shape < 3)
+                    fun.shape = 3.0;
+            }else{
+                fun.minSize -= 0.01;
+                if(fun.minSize < 0)
+                    fun.minSize = 0;
+            }
+        }else if(e.getPreciseWheelRotation() == -1){
+            if(fun.keyList.contains(String.valueOf(KeyEvent.VK_CONTROL)))
+                fun.shape += 1;
+            else
+                fun.minSize += 0.01;
         }
     }
     

@@ -33,7 +33,9 @@ public class Fun extends Canvas implements Runnable{
     double speed = 1000;
     double max = 10000;
     double minSize = 0;
-
+    double shape = 5.0;
+    
+    ArrayList<String> keyList = new ArrayList<>();
     public Fun() {
         f = new JFrame();
         f.setSize(800,600);
@@ -82,6 +84,8 @@ public class Fun extends Canvas implements Runnable{
         g.drawString("mouse location relativ to center", -getWidth()/2+130, -getHeight()/2+60);
         g.drawString("Minimum size: "+dicimal(minSize,2), -getWidth()/2+10, -getHeight()/2+80);
         g.drawString("use mouse wheel", -getWidth()/2+130, -getHeight()/2+80);
+        g.drawString("Egdes on star: "+(int)dicimal(shape,0), -getWidth()/2+10, -getHeight()/2+100);
+        g.drawString("use ctrl + mouse wheel", -getWidth()/2+130, -getHeight()/2+100);
         g.dispose();
         bs.show();
     }
@@ -113,6 +117,8 @@ public class Fun extends Canvas implements Runnable{
         t = new Thread(this, "main");
         addMouseMotionListener(new mL(this));
         addMouseWheelListener(new mL2(this));
+        addKeyListener(new kL(this));
+        this.requestFocus();
         t.start();
     }
     

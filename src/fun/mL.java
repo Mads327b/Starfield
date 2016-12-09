@@ -28,7 +28,7 @@ public class mL implements MouseMotionListener {
         Point p = e.getPoint();
         p.x = p.x-fun.getWidth()/2;
         p.y = p.y-fun.getHeight()/2;
-        double speed = Math.sqrt(p.x*p.x+p.y*p.y)*50;
+        double speed = Math.sqrt(p.x*p.x+p.y*p.y)*20;
         if(p.x+p.y < 0)
             fun.speed = -speed;
         else
